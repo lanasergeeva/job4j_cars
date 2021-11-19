@@ -22,9 +22,9 @@ CREATE TABLE bodies
 CREATE TABLE public.ads
 (
     id          serial primary key,
-    created     timestamp          NOT NUL,
-    description character varying(255) NOT NUL,
-    name        character varying(255) NOT NUL,
+    created     timestamp          NOT NULL,
+    description character varying(255) NOT NULL,
+    name        character varying(255) NOT NULL,
     status      boolean            NOT NULL,
     body_id references bodies (id) NOT NULL,
     mark_id references marks (id)  NOT NULL,
