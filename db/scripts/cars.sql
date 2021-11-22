@@ -26,6 +26,7 @@ CREATE TABLE public.ads
     description character varying(255) NOT NULL,
     name        character varying(255) NOT NULL,
     status      boolean            NOT NULL,
+    photo      boolean            NOT NULL,
     body_id references bodies (id) NOT NULL,
     mark_id references marks (id)  NOT NULL,
     user_id references users (id)  NOT NULL

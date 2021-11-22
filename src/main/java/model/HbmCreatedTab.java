@@ -27,7 +27,19 @@ public class HbmCreatedTab {
             Advt advt = Advt.of("Продаю бодрый Hyunday Accent. Быстрым - скидка!",
                     "На ходу. За машиной следил. Не перекуп", mark, body, user);
 
-            session.save(advt);
+            User two = User.of("Андрей", "89781478526", "privetAndrey@mail.ru", "111");
+            session.save(two);
+
+            Body bodyT = Body.of("sedan");
+            session.save(bodyT);
+
+            Mark markT = Mark.of("Daewoo Lanos");
+            session.save(markT);
+
+            Advt advtT = Advt.of("Лучший в мире Ланос",
+                    "Пробег 700тыс", markT, bodyT, two);
+            advtT.setPhoto(true);
+            session.save(advtT);
 
             session.getTransaction().commit();
             session.close();

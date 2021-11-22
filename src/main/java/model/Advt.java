@@ -18,6 +18,8 @@ public class Advt {
     private String description;
     @Column(nullable = false)
     private boolean status;
+    @Column(nullable = false)
+    private boolean photo;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
@@ -40,6 +42,7 @@ public class Advt {
         advt.description = description;
         advt.created = new Date(System.currentTimeMillis());
         advt.status = false;
+        advt.photo = false;
         advt.setMark(mark);
         advt.setBody(body);
         advt.setUser(user);
@@ -76,6 +79,14 @@ public class Advt {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public boolean isPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(boolean photo) {
+        this.photo = photo;
     }
 
     public Date getCreated() {
@@ -127,5 +138,18 @@ public class Advt {
         return Objects.hash(id);
     }
 
-
+    @Override
+    public String toString() {
+        return "Advt{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", description='" + description + '\''
+                + ", status=" + status
+                + ", photo=" + photo
+                + ", created=" + created
+                + ", mark=" + mark
+                + ", body=" + body
+                + ", user=" + user
+                + '}';
+    }
 }

@@ -3,6 +3,7 @@ package model;
 import javax.persistence.*;
 
 import java.util.Objects;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -86,5 +87,16 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "User{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", phone='" + phone + '\''
+                + ", email='" + email + '\''
+                + ", password='" + password + '\''
+                + '}';
     }
 }

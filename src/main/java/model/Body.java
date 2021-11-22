@@ -49,4 +49,12 @@ public class Body {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "Body{"
+               + "id=" + id
+               + ", name='" + name + '\''
+               + '}';
+    }
 }
