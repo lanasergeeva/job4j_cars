@@ -4,21 +4,19 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "marks")
-public class Mark {
+@Table(name = "transmissions")
+public class Transmission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(nullable = false, unique = true)
     private String name;
 
-
-    public static Mark of(String name) {
-        Mark mark = new Mark();
-        mark.name = name;
-        return mark;
+    public static Transmission of(String name) {
+        Transmission transmission = new Transmission();
+        transmission.name = name;
+        return transmission;
     }
-
 
     public int getId() {
         return id;
@@ -44,8 +42,8 @@ public class Mark {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Mark mark = (Mark) o;
-        return id == mark.id;
+        Transmission that = (Transmission) o;
+        return id == that.id;
     }
 
     @Override
@@ -55,7 +53,7 @@ public class Mark {
 
     @Override
     public String toString() {
-        return "Mark{"
+        return "Transmission{"
                 + "id=" + id
                 + ", name='" + name + '\''
                 + '}';

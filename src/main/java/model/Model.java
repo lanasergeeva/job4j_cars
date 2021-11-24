@@ -4,21 +4,24 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "marks")
-public class Mark {
+@Table(name = "models")
+public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String name;
 
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "marks_id", nullable = false)
+    private Mark mark;
 
-    public static Mark of(String name) {
-        Mark mark = new Mark();
-        mark.name = name;
-        return mark;
+    public static Model of(String name, Mark mark) {
+        Model model = new Model();
+        model.name = name;
+        model.setMark(mark);
+        return model;
     }
-
 
     public int getId() {
         return id;
@@ -36,6 +39,14 @@ public class Mark {
         this.name = name;
     }
 
+    public Mark getMark() {
+        return mark;
+    }
+
+    public void setMark(Mark mark) {
+        this.mark = mark;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -44,8 +55,8 @@ public class Mark {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Mark mark = (Mark) o;
-        return id == mark.id;
+        Model model = (Model) o;
+        return id == model.id;
     }
 
     @Override
@@ -55,9 +66,10 @@ public class Mark {
 
     @Override
     public String toString() {
-        return "Mark{"
+        return "Model{"
                 + "id=" + id
                 + ", name='" + name + '\''
+                + ", mark=" + mark
                 + '}';
     }
 }
