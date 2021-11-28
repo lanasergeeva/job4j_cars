@@ -22,6 +22,8 @@
         <mapping class="model.Advt" />
         <mapping class="model.Body" />
         <mapping class="model.Mark" />
+        <mapping class="model.Model" />
+        <mapping class="model.Transmission"/>
         <mapping class="model.User" />
 
 

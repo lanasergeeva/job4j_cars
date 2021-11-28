@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "ads")
-
 public class Advt {
 
     @Id
@@ -14,19 +13,34 @@ public class Advt {
     private int id;
     @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    private int price;
+
     @Column(nullable = false)
     private String description;
+
     @Column(nullable = false)
     private boolean status;
+
     @Column(nullable = false)
     private boolean photo;
+
+    @Column(nullable = false)
+    private int mileage;
+
+    @Column(nullable = false)
+    private int year;
+
+    @Column(nullable = false)
+    private int owners;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
     @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "mark_id", nullable = false)
-    private Mark mark;
+    @JoinColumn(name = "models_id", nullable = false)
+    private Model model;
 
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "body_id", nullable = false)
@@ -36,16 +50,25 @@ public class Advt {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public static Advt of(String name, String description, Mark mark, Body body, User user) {
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "transmission_id", nullable = false)
+    private Transmission transmission;
+
+    public static Advt of(String name, int price, String description, int year, int mileage, int owners, Model model, Body body, User user, Transmission transmission) {
         Advt advt = new Advt();
         advt.name = name;
+        advt.price = price;
         advt.description = description;
         advt.created = new Date(System.currentTimeMillis());
         advt.status = false;
         advt.photo = false;
-        advt.setMark(mark);
+        advt.year = year;
+        advt.mileage = mileage;
+        advt.owners = owners;
+        advt.setModel(model);
         advt.setBody(body);
         advt.setUser(user);
+        advt.setTransmission(transmission);
         return advt;
     }
 
@@ -64,6 +87,8 @@ public class Advt {
     public void setName(String name) {
         this.name = name;
     }
+
+
 
     public String getDescription() {
         return description;
@@ -89,6 +114,30 @@ public class Advt {
         this.photo = photo;
     }
 
+    public int getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(int mileage) {
+        this.mileage = mileage;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getOwners() {
+        return owners;
+    }
+
+    public void setOwners(int owners) {
+        this.owners = owners;
+    }
+
     public Date getCreated() {
         return created;
     }
@@ -97,12 +146,12 @@ public class Advt {
         this.created = created;
     }
 
-    public Mark getMark() {
-        return mark;
+    public Model getModel() {
+        return model;
     }
 
-    public void setMark(Mark mark) {
-        this.mark = mark;
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     public Body getBody() {
@@ -119,6 +168,22 @@ public class Advt {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Transmission getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(Transmission transmission) {
+        this.transmission = transmission;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     @Override
@@ -143,13 +208,18 @@ public class Advt {
         return "Advt{"
                 + "id=" + id
                 + ", name='" + name + '\''
+                + ", price=" + price
                 + ", description='" + description + '\''
                 + ", status=" + status
                 + ", photo=" + photo
+                + ", mileage=" + mileage
+                + ", year=" + year
+                + ", owners=" + owners
                 + ", created=" + created
-                + ", mark=" + mark
+                + ", model=" + model
                 + ", body=" + body
                 + ", user=" + user
+                + ", transmission=" + transmission
                 + '}';
     }
 }
