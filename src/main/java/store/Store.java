@@ -30,4 +30,10 @@ public interface Store {
 
     User findByEmailUser(String name);
 
+    List<Advt> findByUser(User user);
+
+    boolean done(int id);
+
+    boolean isNotDone(int id);
+
 }

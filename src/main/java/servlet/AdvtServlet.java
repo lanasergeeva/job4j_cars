@@ -2,6 +2,8 @@ package servlet;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.Advt;
+import model.User;
+import org.hibernate.exception.ConstraintViolationException;
 import store.HbmStore;
 
 import javax.persistence.NoResultException;
@@ -13,6 +15,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 public class AdvtServlet extends HttpServlet {
 
@@ -25,8 +28,19 @@ public class AdvtServlet extends HttpServlet {
         PrintWriter writer = new PrintWriter(new OutputStreamWriter(
                 resp.getOutputStream(), StandardCharsets.UTF_8));
         Advt advt = GSON.fromJson(req.getReader(), Advt.class);
+        User user = (User) req.getSession().getAttribute("user");
+        User check = HbmStore.instOf().findByEmailUser(user.getEmail());
+        System.out.println(check);
+        advt.setUser(check);
+        advt.setCreated(new Date(System.currentTimeMillis()));
+        System.out.println(advt);
+        try {
         HbmStore.instOf().add(advt);
         writer.print("200 OK");
+        } catch (ConstraintViolationException e) {
+            writer.print("400 Bad Request");
+        }
+        System.out.println("nothing");
         writer.flush();
     }
 

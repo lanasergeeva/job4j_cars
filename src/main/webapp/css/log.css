@@ -1,0 +1,99 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
+
+.container {
+    width: 100%;
+    max-width: 280px;
+    margin: 0px 21px;
+    margin-top: 200px;
+}
+
+
+.new-todo {
+    font-family: sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 35px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%);
+    margin-top: 35px;
+    border-radius: 6px;
+    display: flex;
+}
+
+.new-todo-input {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.new-todo-input input {
+    width: 100%;
+    padding: 7px 0px;
+    font-size: 14px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: hsl(233, 14%, 35%);
+    text-indent: 21px;
+}
+
+.new-todo-input form {
+    flex-grow: 1;
+    display: flex;
+}
+
+.new-todo-input input::placeholder {
+    font-family: sans-serif;
+    text-align: center;
+    color: hsl(233, 14%, 35%);
+}
+
+.button {
+    font-family: sans-serif;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 14px;
+    width: 40%;
+    height: 28px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%);
+    margin-top: 14px;
+    border-radius: 6px;
+    border-color: hsl(233, 14%, 35%);
+    color: hsl(233, 14%, 35%);
+    cursor: pointer;
+}
+
+.button_ac {
+    font-family: sans-serif;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 14px;
+    width: 80%;
+    height: 28px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%);
+    margin-top: 14px;
+    border-radius: 6px;
+    color: hsl(233, 14%, 35%);
+    border-color: black;
+    cursor: pointer;
+}
+

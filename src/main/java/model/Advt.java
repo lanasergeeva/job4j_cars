@@ -11,8 +11,6 @@ public class Advt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable = false)
-    private String name;
 
     @Column(nullable = false)
     private int price;
@@ -54,9 +52,12 @@ public class Advt {
     @JoinColumn(name = "transmission_id", nullable = false)
     private Transmission transmission;
 
-    public static Advt of(String name, int price, String description, int year, int mileage, int owners, Model model, Body body, User user, Transmission transmission) {
+    public Advt() {
+
+    }
+
+    public static Advt of(int price, String description, int year, int mileage, int owners, Model model, Body body, User user, Transmission transmission) {
         Advt advt = new Advt();
-        advt.name = name;
         advt.price = price;
         advt.description = description;
         advt.created = new Date(System.currentTimeMillis());
@@ -72,6 +73,21 @@ public class Advt {
         return advt;
     }
 
+    public Advt(int price, String description, int year, int mileage,
+                int owners, Model model, Body body, Transmission transmission) {
+        this.created = new Date(System.currentTimeMillis());
+        this.status = false;
+        this.photo = false;
+        this.price = price;
+        this.description = description;
+        this.year = year;
+        this.mileage = mileage;
+        this.owners = owners;
+        this.model = model;
+        this.body = body;
+        this.transmission = transmission;
+    }
+
     public int getId() {
         return id;
     }
@@ -79,15 +95,6 @@ public class Advt {
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 
 
     public String getDescription() {
@@ -207,7 +214,6 @@ public class Advt {
     public String toString() {
         return "Advt{"
                 + "id=" + id
-                + ", name='" + name + '\''
                 + ", price=" + price
                 + ", description='" + description + '\''
                 + ", status=" + status

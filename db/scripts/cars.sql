@@ -24,7 +24,6 @@ CREATE TABLE public.ads
     id          serial primary key,
     created     timestamp          NOT NULL,
     description character varying(255) NOT NULL,
-    name        character varying(255) NOT NULL,
     status      boolean            NOT NULL,
     photo      boolean            NOT NULL,
     body_id references bodies (id) NOT NULL,

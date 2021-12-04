@@ -1,5 +1,4 @@
-package model;
-
+import model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -18,26 +17,39 @@ public class HbmCreatedTab {
             User user = User.of("Пользователь", "89788884455", "neperekup@mail.ru", "123");
             session.save(user);
 
-            Body body = Body.of("hatchback");
+            Body body = Body.of("хэтчбек");
             session.save(body);
 
-            Mark mark = Mark.of("Hyunday Accent");
+            Mark mark = Mark.of("Hyunday");
             session.save(mark);
 
-            Advt advt = Advt.of("Продаю бодрый Hyunday Accent. Быстрым - скидка!",
-                    "На ходу. За машиной следил. Не перекуп", mark, body, user);
+            Model model = Model.of("Accent", mark);
+            session.save(model);
+
+            Transmission tr = Transmission.of("Автомат");
+            session.save(tr);
+
+            Advt advt = Advt.of(269250,
+                    "На ходу. За машиной следил. Не перекуп", 2010, 259666, 5, model, body, user, tr);
+            session.save(advt);
 
             User two = User.of("Андрей", "89781478526", "privetAndrey@mail.ru", "111");
             session.save(two);
 
-            Body bodyT = Body.of("sedan");
+            Body bodyT = Body.of("седан");
             session.save(bodyT);
 
-            Mark markT = Mark.of("Daewoo Lanos");
+            Mark markT = Mark.of("Daewoo");
             session.save(markT);
 
-            Advt advtT = Advt.of("Лучший в мире Ланос",
-                    "Пробег 700тыс", markT, bodyT, two);
+            Model modelT = Model.of("Lanos", markT);
+            session.save(modelT);
+
+            Transmission trT = Transmission.of("Механика");
+            session.save(trT);
+
+            Advt advtT = Advt.of(159000,
+                    "Пробег 700тыс", 2007, 399000, 8, modelT, bodyT, two, trT);
             advtT.setPhoto(true);
             session.save(advtT);
 

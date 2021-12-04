@@ -17,11 +17,13 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
+import javax.persistence.Query;
 
 public class HbmStore implements Store {
 
     public static void main(String[] args) {
-        System.out.println(HbmStore.instOf().findByEmailUser("neperekup@mail.ru"));
+        User us = HbmStore.instOf().findByEmailUser("la@la");
+        System.out.println(HbmStore.instOf().findByUser(us));
     }
 
     private static final Logger LOG = LoggerFactory.getLogger(HbmStore.class.getName());
@@ -46,7 +48,7 @@ public class HbmStore implements Store {
     }
 
     @Override
-    public Advt add(Advt advt) {
+    public Advt add(Advt advt) throws ConstraintViolationException {
         tx(session -> session.save(advt));
         return advt;
     }
@@ -86,6 +88,32 @@ public class HbmStore implements Store {
     }
 
     @Override
+    public boolean done(int id) {
+        String hql = "update model.Advt as ad "
+                + " set status = :done where ad.id=:id";
+        return tx(session -> {
+                    Query query = session.createQuery(hql);
+                    query.setParameter("id", id);
+                    query.setParameter("done", true);
+                    return query.executeUpdate() > 0;
+                }
+        );
+    }
+
+    @Override
+    public boolean isNotDone(int id) {
+        String hql = "update model.Advt as ad "
+                + " set status = :done where ad.id=:id";
+        return tx(session -> {
+                    Query query = session.createQuery(hql);
+                    query.setParameter("id", id);
+                    query.setParameter("done", false);
+                    return query.executeUpdate() > 0;
+                }
+        );
+    }
+
+    @Override
     public List<Advt> findAll() {
         return tx(
                 session -> session.createQuery("from model.Advt").list());
@@ -107,6 +135,15 @@ public class HbmStore implements Store {
                 session -> session.createQuery(rsl)
                         .setParameter("mark", mark).list());
     }*/
+
+    @Override
+    public List<Advt> findByUser(User user) {
+        String rsl = "select at from model.Advt at "
+                + "where at.user = :user";
+        return tx(
+                session -> session.createQuery(rsl)
+                        .setParameter("user", user).list());
+    }
 
     @Override
     public List<Advt> findAllToday() {
