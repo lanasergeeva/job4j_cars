@@ -24,6 +24,9 @@ public class HbmStore implements Store {
     public static void main(String[] args) {
         User us = HbmStore.instOf().findByEmailUser("la@la");
         System.out.println(HbmStore.instOf().findByUser(us));
+        Mark m = HbmStore.instOf().findMarkById(2);
+        System.out.println(m);
+        System.out.println(HbmStore.instOf().findAllModelByMark(m));
     }
 
     private static final Logger LOG = LoggerFactory.getLogger(HbmStore.class.getName());
@@ -64,6 +67,37 @@ public class HbmStore implements Store {
         return tx(
                 session -> session.createQuery("from model.Model").list());
     }
+
+    @Override
+    public List<Model> findAllModelByMark(Mark mark) {
+        String rsl = "select m from model.Model m "
+                + "where m.mark = :mark";
+        return tx(
+                session -> session.createQuery(rsl).setParameter("mark", mark).list());
+    }
+
+    @Override
+    public Mark findMarkById(int id) {
+        Mark rsl;
+        rsl = (Mark) tx(
+                session -> session
+                        .createQuery("from model.Mark as mark where mark.id=:id")
+                        .setParameter("id", id).getSingleResult());
+        return rsl;
+    }
+
+/*    @Override
+    public List<Advt> findByUser(User user) {
+       @Override
+    public User findByEmailUser(String email) throws NoResultException {
+        User rsl;
+        rsl = (User) tx(
+                session -> session
+                        .createQuery("from model.User as user where user.email=:email").
+                                setParameter("email", email).getSingleResult());
+        return rsl;
+    }
+    }*/
 
     @Override
     public List<Mark> findAllMarks() {
@@ -119,21 +153,12 @@ public class HbmStore implements Store {
                 session -> session.createQuery("from model.Advt").list());
     }
 
-    @Override
+   /* @Override
     public List<Advt> findAllAdvtWithPhoto() {
         String rsl = "select at from model.Advt at "
                 + "where at.photo = true";
         return tx(
                 session -> session.createQuery(rsl).list());
-    }
-
-   /* @Override
-    public List<Advt> findAllAdvtByMark(Mark mark) {
-        String rsl = "select at from model.Advt at "
-                + "where at.mark = :mark";
-        return tx(
-                session -> session.createQuery(rsl)
-                        .setParameter("mark", mark).list());
     }*/
 
     @Override
