@@ -22,9 +22,6 @@ public class Advt {
     private boolean status;
 
     @Column(nullable = false)
-    private boolean photo;
-
-    @Column(nullable = false)
     private int mileage;
 
     @Column(nullable = false)
@@ -62,7 +59,6 @@ public class Advt {
         advt.description = description;
         advt.created = new Date(System.currentTimeMillis());
         advt.status = false;
-        advt.photo = false;
         advt.year = year;
         advt.mileage = mileage;
         advt.owners = owners;
@@ -77,7 +73,6 @@ public class Advt {
                 int owners, Model model, Body body, Transmission transmission) {
         this.created = new Date(System.currentTimeMillis());
         this.status = false;
-        this.photo = false;
         this.price = price;
         this.description = description;
         this.year = year;
@@ -111,14 +106,6 @@ public class Advt {
 
     public void setStatus(boolean status) {
         this.status = status;
-    }
-
-    public boolean isPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(boolean photo) {
-        this.photo = photo;
     }
 
     public int getMileage() {
@@ -217,7 +204,6 @@ public class Advt {
                 + ", price=" + price
                 + ", description='" + description + '\''
                 + ", status=" + status
-                + ", photo=" + photo
                 + ", mileage=" + mileage
                 + ", year=" + year
                 + ", owners=" + owners

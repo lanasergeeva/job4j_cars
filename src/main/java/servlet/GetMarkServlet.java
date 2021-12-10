@@ -13,7 +13,6 @@ import java.nio.charset.StandardCharsets;
 
 public class GetMarkServlet extends HttpServlet {
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/plain");
@@ -22,7 +21,6 @@ public class GetMarkServlet extends HttpServlet {
                 resp.getOutputStream(), StandardCharsets.UTF_8));
         int id = Integer.parseInt(req.getReader().readLine());
         Mark mark = HbmStore.instOf().findMarkById(id);
-        System.out.println(mark + " марка");
         HttpSession sc = req.getSession();
         sc.removeAttribute("mark");
         sc.setAttribute("mark", mark);

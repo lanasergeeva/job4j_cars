@@ -22,18 +22,13 @@ public class PrivateAdvtServlet extends HttpServlet  {
         resp.setContentType("application/json; charset=utf-8");
         OutputStream output = resp.getOutputStream();
         User user = (User) req.getSession().getAttribute("user");
-        System.out.println("Пользователь" + user);
         try {
-            System.out.println("Hola");
             User check = HbmStore.instOf().findByEmailUser(user.getEmail());
             String json = GSON.toJson(HbmStore.instOf().findByUser(check));
             System.out.println("Строка" + json);
             output.write(json.getBytes(StandardCharsets.UTF_8));
-
         } catch (NoResultException e) {
-            System.out.println("By");
-           /* String json = GSON.toJson(HbmStore.instOf().findAll());
-            output.write(json.getBytes(StandardCharsets.UTF_8));*/
+            output.write(1);
         }
         output.flush();
         output.close();

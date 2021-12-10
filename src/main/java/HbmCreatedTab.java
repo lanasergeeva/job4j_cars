@@ -50,7 +50,6 @@ public class HbmCreatedTab {
 
             Advt advtT = Advt.of(159000,
                     "Пробег 700тыс", 2007, 399000, 8, modelT, bodyT, two, trT);
-            advtT.setPhoto(true);
             session.save(advtT);
 
             session.getTransaction().commit();
