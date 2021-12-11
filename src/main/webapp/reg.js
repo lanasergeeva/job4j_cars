@@ -1,5 +1,5 @@
 function validate() {
-    var rsl = true;
+    let rsl = true;
     if ($('#login').val() === '') {
         alert($('#login').attr('title'));
         rsl = false;
@@ -36,7 +36,7 @@ function addUser() {
         }), dataType: 'text'
     }).done(function (data) {
         if (data === "200 OK") {
-            window.location.href = "http://localhost:8080/cars/index.html";
+            window.location.href = "http://localhost:8080/cars/log.html";
         } else {
             alert("User exist");
             document.getElementById('login').value='';

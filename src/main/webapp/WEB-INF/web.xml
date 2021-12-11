@@ -2,7 +2,11 @@
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
+
+
 <web-app>
+
+
   <display-name>Archetype Created Web Application</display-name>
   <filter>
     <filter-name>AuthFilter</filter-name>
@@ -60,6 +64,32 @@
     <servlet-name>IsNotDoneServlet</servlet-name>
     <servlet-class>servlet.IsNotDoneServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DownloadPhotoServlet</servlet-name>
+    <servlet-class>servlet.DownloadPhotoServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>servlet.UploadServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>DeletePhotoServlet</servlet-name>
+    <servlet-class>servlet.DeletePhotoServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>GetMarkServlet</servlet-name>
+    <servlet-class>servlet.GetMarkServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>GetModelsMarkServlet</servlet-name>
+    <servlet-class>servlet.GetModelsMarkServlet</servlet-class>
+  </servlet>
+
+
+
+
 
   <servlet-mapping>
     <servlet-name>ModelServlet</servlet-name>
@@ -109,6 +139,27 @@
     <servlet-name>IsNotDoneServlet</servlet-name>
     <url-pattern>/notdone.do</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DownloadPhotoServlet</servlet-name>
+    <url-pattern>/download.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/up.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeletePhotoServlet</servlet-name>
+    <url-pattern>/deletephoto.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetMarkServlet</servlet-name>
+    <url-pattern>/getmark.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetModelsMarkServlet</servlet-name>
+    <url-pattern>/getmodels.do</url-pattern>
+  </servlet-mapping>
+
 
 
 </web-app>

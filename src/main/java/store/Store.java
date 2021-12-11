@@ -14,12 +14,6 @@ public interface Store {
 
     List<Advt> findAll();
 
-    List<Advt> findAllAdvtWithPhoto();
-
-    /*   List<Advt> findAllAdvtByMark(Mark mark);*/
-
-    List<Advt> findAllToday();
-
     List<Transmission> findAllTrans();
 
     List<Model> findAllModel();
@@ -36,4 +30,7 @@ public interface Store {
 
     boolean isNotDone(int id);
 
+    List<Model> findAllModelByMark(Mark mark);
+
+    Mark findMarkById(int id);
 }

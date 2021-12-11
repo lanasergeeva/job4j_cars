@@ -41,6 +41,10 @@ public class User {
         this.name = name;
     }
 
+    public User(String email) {
+        this.email = email;
+    }
+
     public int getId() {
         return id;
     }

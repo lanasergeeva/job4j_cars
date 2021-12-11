@@ -17,8 +17,7 @@ body {
 .container {
     width: 100%;
     max-width: 280px;
-    margin: 0px 21px;
-    margin-top: 200px;
+    margin: 200px 21px 0;
 }
 
 
@@ -43,7 +42,7 @@ body {
 
 .new-todo-input input {
     width: 100%;
-    padding: 7px 0px;
+    padding: 7px 0;
     font-size: 14px;
     background-color: transparent;
     border: none;

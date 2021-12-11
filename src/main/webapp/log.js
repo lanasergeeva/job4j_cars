@@ -1,10 +1,6 @@
 
-
-
-
-
 function validate() {
-    var rsl = true;
+    let rsl = true;
     if ($('#email').val() === '') {
         alert($('#email').attr('title'));
         rsl = false;
@@ -29,6 +25,9 @@ function checkUser() {
         }), dataType: 'text'
     }).done(function (data) {
         if (data !== "400 Bad Request") {
+            localStorage.clear();
+            let val = "first";
+            localStorage.setItem('ex', val);
             window.location.href = "http://localhost:8080/cars/index.html";
         } else {
             alert("You entered incorrect email or password");

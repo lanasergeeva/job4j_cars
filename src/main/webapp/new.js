@@ -1,26 +1,105 @@
-var trMap = new Map;
-var bodyMap = new Map;
-var modelMap = new Map;
+let trMap = new Map;
+let bodyMap = new Map;
+let modelMap = new Map;
 
 $(document).ready(function () {
     getModels();
     getMarks();
     getBodies();
     getTransmission();
+    fails();
+    setYears();
+    setOwners();
 });
+
+
+function getModelsSelect(selectObject) {
+    let value = selectObject.value;
+    setMark(value);
+    getModelsByMark();
+}
+
+
+function setMark(id) {
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:8080/cars/getmark.do',
+        data: id,
+        dataType: 'text'
+    }).done(function (data) {
+        if (data === "200 OK") {
+            console.log("Айди марки передано");
+        }
+    });
+}
+
+
+function getModelsByMark() {
+    $('#mod_car').children().not(':first').remove();
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:8080/cars/getmodels.do',
+        dataType: 'json'
+    }).done(function (data) {
+        for (let mod of data) {
+            $('#mod_car').append($('<option>', {
+                value: mod.id,
+                text: mod.name,
+            }));
+        }
+    });
+}
+
+
+function fails() {
+    alert(localStorage.getItem("fail"));
+    if (localStorage.getItem("fail") === "fail") {
+        $('#menu').prop("style", "padding-top: 10px").prop("style", "color:red");
+        $('#menu').text('Нужно заполнить все поля!');
+    }
+}
+
+$(document).on("click", "#menu", function () {
+    localStorage.removeItem("fail");
+    window.location.href = "http://localhost:8080/cars/index.html";
+});
+
+
+function setYears() {
+    $('#year1').children().not(':first').remove();
+    let y = 0;
+    for (let i = 2021; i >= 1950; i--) {
+        y++;
+        $('#year1').append($('<option>', {
+            value: i,
+            text: i,
+        }));
+    }
+}
+
+
+function setOwners() {
+    $('#o1').children().not(':first').remove();
+    let y = 0;
+    for (let i = 1; i <= 20; i++) {
+        y++;
+        $('#o1').append($('<option>', {
+            value: i,
+            text: i,
+        }));
+    }
+}
 
 function getModels() {
     modelMap.clear();
     $('#mod_car').children().not(':first').remove();
-    /*  $("#model:not(:first)").remove();*/
-    /*ctList.clear();*/
     $.ajax({
         type: 'GET',
         url: 'http://localhost:8080/cars/model.do',
         dataType: 'json'
     }).done(function (data) {
         for (let mod of data) {
-        modelMap.set(mod.id, mod);
+            modelMap.set(mod.id, mod);
             $('#mod_car').append($('<option>', {
                 value: mod.id,
                 text: mod.name,
@@ -31,7 +110,6 @@ function getModels() {
 
 function getMarks() {
     $('#ma_car').children().not(':first').remove();
-    /*ctList.clear();*/
     $.ajax({
         type: 'GET',
         url: 'http://localhost:8080/cars/mark.do',
@@ -83,23 +161,12 @@ function getTransmission() {
 }
 
 function addCar() {
-    let owners = parseInt($('#own_car').val());
+    let mil = parseInt($('#mil_car').val());
     let price = parseInt($('#price_car').val());
-    let year = parseInt($('#ye_car').val());
-    let run = parseInt($('#mil_car').val());
-
-    /*let intyear = parseInt(year);
-    let intmil = parseInt(run);
-    let ow = parseInt(owners);
-    let pr = parseInt(price);
-    alert(typeof intyear);
-    alert(typeof intmil);
-    alert(typeof ow);
-    alert(typeof pr);*/
+    let year = $('#year1 option:selected').text();
+    let owners = $('#o1 option:selected').text();
 
     let descr = $('#desc_car').val();
-    alert(descr);
-
 
     let modellist = $('#mod_car')
         .find(":selected")
@@ -137,28 +204,48 @@ function addCar() {
         trans = mod;
     }
 
-
-    $.ajax({
-        type: 'POST',
-        url: 'http://localhost:8080/cars/post.do',
-        data: JSON.stringify({
-            price: price,
-            description: descr,
-            year: year,
-            mileage: run,
-            owners: owners,
-            model: model,
-            body: body,
-            transmission: trans
-        }), dataType: 'text'
-    }).done(function (data) {
-            if (data === "200 OK") {
+    if (descr.length > 0 && model !== undefined && body !== undefined && trans !== undefined) {
+        alert("bef a");
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8080/cars/post.do',
+            data: JSON.stringify({
+                price: price,
+                description: descr,
+                year: year,
+                mileage: mil,
+                owners: owners,
+                model: model,
+                body: body,
+                transmission: trans
+            }), dataType: 'json'
+        }).done(function (data) {
+            if (data !== "400 Bad Request" || data.id !== 0) {
+                alert("должен грузить фото");
+                updatePhoto(data.id);
                 window.location.href = "http://localhost:8080/cars/owns.html";
+                $('#selectPhoto').clear();
+                localStorage.removeItem("fail");
             } else {
-                alert("wrong")
-                /*document.getElementById('description').value = '';
-            getAllItems();*/
+                alert("else");
+                localStorage.setItem("fail", "fail");
             }
-        }
-    )
+        })
+    } else {
+        localStorage.setItem("fail", "fail");
+    }
+}
+
+
+function updatePhoto(id) {
+    let input = $('#selectPhoto').prop('files');
+    if (input.length > 0) {
+        alert("foto");
+        let formData = new FormData();
+        formData.append("file", input[0]);
+        fetch('http://localhost:8080/cars/up.do?id=' + id, {
+            method: 'POST',
+            body: formData
+        });
+    }
 }
