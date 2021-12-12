@@ -23,13 +23,13 @@
 
 ## Общий вид приложения
 
-## Старинцы с авторизацией и регистрацией
+## Страницы с авторизацией и регистрацией
 
 ![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/log.jpg)
 
 ![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/reg.jpg)
 
-## При авторизации и регистриции добавлена валдиация вводимых значений, все поля должны быть заполнены
+## При авторизации и регистриции добавлена валидация вводимых значений, все поля должны быть заполнены
 
 ![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/log.jpg)
 
@@ -39,16 +39,16 @@
 
 ![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/userexist.jpg)
 
-## На стартовой странице мы увидим все объвления пользователей, а также разделы, куда мы можем перейти: Мои объявления, Добавить объявление и Выйти из аккаунта
+## На стартовой странице мы увидим все объявления пользователей, а также разделы, куда мы можем перейти: Мои объявления, Добавить объявление и Выйти из аккаунта
 
 ![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/start.jpg)
 
 
-## Форма добавления нового объявления. Здесь добавленая возможность выбора фото, а также по ссылку можно вернуться в главное меню.
+## Форма добавления нового объявления. Здесь добавленая возможность выбора фото, а также по ссылке можно вернуться в главное меню.
 
 ![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/newadds.jpg)
 
-## Для полей Пробег и Стоимость добавленая валидация
+## Для полей Пробег и Стоимость добавлена валидация
 
 ![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/newaddvalid.jpg)
 
@@ -60,11 +60,11 @@
 
 ![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/setphotojpg.jpg)
 
-## Если статус объявления - Продано. Тогда оно принимает такой вид
+## Если статус объявления - Продано, тогда оно принимает такой вид
 
 ![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/sold.jpg)
 
-## Демонстрация смены статуса и удаление объявление
+## Демонстрация смены статуса и удаления объявление
 
 ![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/changedeleteowns.gif)
 
