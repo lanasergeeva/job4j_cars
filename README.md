@@ -31,7 +31,7 @@
 
 ## При авторизации и регистриции добавлена валидация вводимых значений, все поля должны быть заполнены
 
-![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/log.jpg)
+![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/regvalid.jpg)
 
 ![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/validlog.jpg)
 
