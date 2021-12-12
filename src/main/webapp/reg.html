@@ -27,7 +27,7 @@
         <form onsubmit="addUser(event)">
             <div class="new-todo">
                 <div class="new-todo-input">
-                    <input id="login" type="text" title="Enter you name"
+                    <input id="login" type="text" required title="Enter you name"
                            oninvalid="this.setCustomValidity('Нужно указать имя')"
                            oninput="this.setCustomValidity('')"
                            autocomplete="off" placeholder="Ведите логин.."/>
@@ -35,7 +35,7 @@
             </div>
             <div class="new-todo" style="margin-top: 20px;">
                 <div class="new-todo-input">
-                    <input id="email" type="email" title="Enter you email"
+                    <input id="email" type="email" required title="Enter you email"
                            oninvalid="this.setCustomValidity('Email должен содержать @')"
                            oninput="this.setCustomValidity('')"
                            autocomplete="off" placeholder="Введите email..."/>
@@ -43,7 +43,7 @@
             </div>
             <div class="new-todo" style="margin-top: 20px;">
                 <div class="new-todo-input">
-                    <input id="password" type="password" title="Enter your password"
+                    <input id="password" type="password" required title="Enter your password"
                            oninvalid="this.setCustomValidity('Нужно указать пароль')"
                            oninput="this.setCustomValidity('')"
                            autocomplete="off"
@@ -52,14 +52,14 @@
             </div>
             <div class="new-todo" style="margin-top: 20px;">
                 <div class="new-todo-input">
-                    <input id="numb" type="tel" title="Enter your phone number"
-                           onvalid="this.setCustomValidity('Укажите моб. номер')"
+                    <input id="numb" type="tel" required
+                           oninvalid="this.setCustomValidity('Укажите моб. номер')"
                            oninput="this.setCustomValidity('')"
                            autocomplete="off"
                            placeholder="Введите моб.номер..."/>
                 </div>
             </div>
-            <button type="submit" class="button" onclick="return validate();">Save</button>
+            <button type="submit" class="button">Save</button>
         </form>
 
         <button type="button" class="button_ac">

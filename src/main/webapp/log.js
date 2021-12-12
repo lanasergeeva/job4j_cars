@@ -1,17 +1,4 @@
 
-function validate() {
-    let rsl = true;
-    if ($('#email').val() === '') {
-        alert($('#email').attr('title'));
-        rsl = false;
-    }
-    if ($('#password').val() === '') {
-        alert($('#password').attr('title'));
-        rsl = false;
-    }
-    return rsl;
-}
-
 function checkUser() {
     event.preventDefault();
     let name = $('#email').val();

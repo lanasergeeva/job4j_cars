@@ -1,23 +1,3 @@
-function validate() {
-    let rsl = true;
-    if ($('#login').val() === '') {
-        alert($('#login').attr('title'));
-        rsl = false;
-    }
-    if ($('#email').val() === '') {
-        alert($('#email').attr('title'));
-        rsl = false;
-    }
-    if ($('#password').val() === '') {
-        alert($('#password').attr('title'));
-        rsl = false;
-    }
-    if ($('#numb').val() === '') {
-        alert($('#numb').attr('title'));
-        rsl = false;
-    }
-    return rsl;
-}
 
 function addUser() {
     event.preventDefault();
@@ -30,9 +10,10 @@ function addUser() {
         url: 'http://localhost:8080/cars/us.do',
         data: JSON.stringify({
             name: name,
+            phone: phone,
             email: email,
             password: pas,
-            phone: phone,
+            phone: phone
         }), dataType: 'text'
     }).done(function (data) {
         if (data === "200 OK") {
@@ -42,6 +23,7 @@ function addUser() {
             document.getElementById('login').value='';
             document.getElementById('email').value='';
             document.getElementById('password').value='';
+            document.getElementById('numb').value='';
         }
     })
 }
