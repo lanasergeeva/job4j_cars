@@ -18,18 +18,6 @@ import javax.persistence.Query;
 
 public class HbmStore implements Store {
 
-    public static void main(String[] args) {
-        User us = HbmStore.instOf().findByEmailUser("la@la");
-        System.out.println(HbmStore.instOf().findByUser(us));
-        Mark m = HbmStore.instOf().findMarkById(2);
-        System.out.println(m);
-        System.out.println(HbmStore.instOf().findAllModelByMark(m));
-        User u = new User("la@p");
-        //User ty = HbmStore.instOf().findByEmailUser(u.getEmail());
-        List<Advt> li = HbmStore.instOf().findByUser(u);
-        System.out.println(li);
-    }
-
     private static final Logger LOG = LoggerFactory.getLogger(HbmStore.class.getName());
 
     private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -39,6 +27,9 @@ public class HbmStore implements Store {
 
     private static final class Lazy {
         private static final Store INST = new HbmStore();
+    }
+
+    private HbmStore() {
     }
 
     public static Store instOf() {
@@ -105,7 +96,7 @@ public class HbmStore implements Store {
     public boolean delete(int id) {
         return tx(session ->
                 session.createQuery("delete from model.Advt "
-                        + "as advt where advt.id=:id").
+                                + "as advt where advt.id=:id").
                         setParameter("id", id)
                         .executeUpdate() > 0);
     }
@@ -154,12 +145,10 @@ public class HbmStore implements Store {
 
     @Override
     public User findByEmailUser(String email) throws NoResultException {
-        User rsl;
-        rsl = (User) tx(
+        return (User) tx(
                 session -> session
                         .createQuery("from model.User as user where user.email=:email").
-                                setParameter("email", email).getSingleResult());
-        return rsl;
+                        setParameter("email", email).getSingleResult());
     }
 
 
