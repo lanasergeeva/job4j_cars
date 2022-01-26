@@ -44,7 +44,7 @@
 ![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/start.jpg)
 
 
-## Форма добавления нового объявления. Здесь добавленая возможность выбора фото, а также по ссылке можно вернуться в главное меню.
+## Форма добавления нового объявления. Здесь добавлена возможность выбора фото, а также по ссылке можно вернуться в главное меню.
 
 ![alt text](https://github.com/lanasergeeva/job4j_cars/blob/master/src/main/webapp/image/newadds.jpg)
 
